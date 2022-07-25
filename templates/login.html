@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Here</title>
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'style3.css' %}">
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <script src="{% static 'state.js' %}"></script>
+</head>
+<body>
+  <h2 id="usertype" style="text-align: center;margin-top: 30px;"></h2>
+  {% for message in messages %}
+    <h3>{{ message }}</h3>
+    {% endfor %}
+  
+        <div class="dabba" id="lgnbox">
+            <input class="name" type="text" id="f_name" placeholder="First Name">
+            <input class="name" type="text" id="l_name" placeholder="Last Name">
+            <input class="user_name" type="text" id="u_name" placeholder="Username">
+            <input class="Email" type="email" id="mmail" placeholder="Email">
+            <input class="pass" type="password" id="pass" placeholder="Password">
+            <input class="pass" type="password" id="pass1" placeholder="Password again">
+            <button type="button" onclick="user_signup()" id="reg">Register</button>
+            <button type="button" onclick="activelgn()">Login</button>  
+        </div>
+  
+  
+        <div class="sgn" id="sgnbox">
+            <input class="user_name" type="text" id="ul_name" placeholder="Username">
+            <input class="pass" type="password" id="lpass" placeholder="Password">
+            <button type="button" onclick="user_login()" id="lgn">Login</button>
+            <button type="button" onclick="activesgn()">Register</button>
+        </div>
+     
+</body>
+<script> 
+  document.getElementById('sgnbox').style.display="none";
+  const type='{{ type }}'
+  const lgnn='{{ hks }}'
+  if(lgnn=='0'){
+    document.getElementById('usertype').innerHTML=type+'Signup'
+  }
+  else if(lgnn=='1'){ 
+    document.getElementById('lgnbox').style.display="none";
+    document.getElementById('sgnbox').style.display="";
+    document.getElementById('usertype').innerHTML=type+'Login' 
+  }
+  document.querySelector("#upload-button").addEventListener("click", () => {
+  //clicks on the file input
+  document.querySelector("#hidden-upload").click();
+});
+
+//adds event listener on the hidden file input to listen for any changes
+document.querySelector("#hidden-upload").addEventListener("change", (event) => {
+  //gets the file name
+  document.querySelector("#upload-name").value = event.target.files[0].name;
+});
+    
+    function activelgn(){
+        document.getElementById('lgnbox').style.display="none";
+        document.getElementById('sgnbox').style.display="";
+        document.getElementById('usertype').innerHTML=type+'Login'
+    }
+    function activesgn(){
+        document.getElementById('sgnbox').style.display="none";
+        document.getElementById('lgnbox').style.display="";
+        document.getElementById('usertype').innerHTML=type+'Signup'
+    }
+</script>
+<script src="{% static 'set.js' %}"></script>
+</html>

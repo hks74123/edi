@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Here</title>
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'style3.css' %}">
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <script src="{% static 'state.js' %}"></script>
+</head>
+<body>
+  <h2 id="usertype" style="text-align: center;margin-top: 30px;"></h2>
+  {% for message in messages %}
+    <h3>{{ message }}</h3>
+    {% endfor %}
+    <form action="/create_course/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="dabba" id="lgnbox">
+            <input class="user_name" type="text" name="title" placeholder="Course Title">
+            <div id="upload-container">
+                <div id="upload-border">
+                  <nobr>
+                    <input type="text" id="upload-name" placeholder="Course image" disabled="true" />
+                    <button id="upload-button" type="button">Select Image</button>
+                  </nobr>
+                </div>
+                <input type="file" id="hidden-upload" name="imgle" style="display:none"/> 
+              </div>
+              
+              <label style="margin-left: 15%;margin-top: 10px;">Content</label>
+              <textarea style="display: block;width: 70%;margin: auto;margin-top: 20px;height: 30px;" name="summary"></textarea>
+              <label style="margin-left: 15%;margin-top: 10px;">Description</label>
+              <textarea style="display: block;width: 70%;margin: auto;margin-top: 20px;height: 190px;" name="content"></textarea>
+              
+              <button type="submit" style="display: block !important;">Create Course</button> 
+              <a class="enroll" href="/">All my courses</a>  
+            </div>
+    </form>
+    <a href="/logout/" style="display: block;width: 40%;margin: auto;margin-bottom: 30px ;"> Logout </a>  
+
+     
+</body>
+<script> 
+  document.querySelector("#upload-button").addEventListener("click", () => {
+  //clicks on the file input
+  document.querySelector("#hidden-upload").click();
+});
+
+//adds event listener on the hidden file input to listen for any changes
+document.querySelector("#hidden-upload").addEventListener("change", (event) => {
+  //gets the file name
+  document.querySelector("#upload-name").value = event.target.files[0].name;
+});
+    
+    
+</script>
+</html> 

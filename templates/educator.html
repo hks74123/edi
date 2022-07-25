@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Here</title>
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'style3.css' %}">
+    <link rel="stylesheet" href="{% static 'style2.css' %}">
+    <script src="{% static 'state.js' %}"></script>
+</head>
+<body>
+  <h2 id="usertype" style="text-align: center;margin-top: 30px;"></h2>
+  {% for message in messages %}
+    <h3>{{ message }}</h3>
+    {% endfor %}
+    <h3>Enroll in Courses</h3>
+        <div class="dabba" id="lgnbox">
+          </div>
+        
+        <a href="/create/" style="display: block;width: 40%;margin: auto;margin-bottom: 30px ;"> Create a Course </a>  
+        <a href="/logout/" style="display: block;width: 40%;margin: auto;margin-bottom: 30px ;"> Logout </a>  
+    </body>
+<script src="{% static 'courses1.js' %}"></script>
+</html>  
